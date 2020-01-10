@@ -1,3 +1,48 @@
 <resources>
-    <string name="app_name">KotlinRpgMoc4</string>
+    <string name="app_name">EsgiKotlinRpgAndroid</string>
+
+    <string name="welcome_message">Salut à toi ! \nBienvenue à kotlinCity! \nQuel est ton nom voyageur ?</string>
+
+    <string name="funny_name">En voilà un drôle de nom %s</string>
+    <string name="game_master">Game Master</string>
+    <string name="validate">Valider</string>
+    <string name="hint_edit_text_value">Ma réponse</string>
+    <string name="your_pseudo">Pseudo :</string>
+    <string name="funny_player_name">En voilà un drôle de nom %s</string>
+    <string name="come_for_quest">Tu viens ici pour la quête ?</string>
+    <string name="yes_or_no_choice">Oui ou Non ???</string>
+    <string name="player_life_point">Environ 0</string>
+
+    <string name="start_quest_yes">Je savais que tu avais l\'ame d\'un guerrier, je l\'ai vu dès que tu t\'es présenté à moi !</string>
+    <string name="start_quest_no">Hum, tu es sûr ? la légende dit qu\'il y aurait une épée sacrée cachée dans ce Donjon…</string>
+    <string name="start_quest_bad_answer">Hum, Hum, ce n\'est pas une bonne réponse</string>
+
+    <string name="first_foot_in_dungeon">"Vous venez de pénétrer dans le donjon de %s ! \nN'hésite pas à jeter un oeil à la carte !</string>
+
+    <string name="default_value">toto</string>
+    <string name="you_dont_do_the_job">Tu ne faisais pas l\'affaire de toute manière! \n fishtrrr…</string>
+    <string name="you_are_so_young">Damn! You are soooo young, I don\'t think you can survive enough time ! Bonne chance mon enfant j\'en perds mon français !</string>
+    <string name="that_ok_you_are_wise_enough">Hum, un grand Jedi tu seras !</string>
+    <string name="god_you_are_so_old">Outch, je te laisserai bien ma place assis dans le métro, si seulement il y en avait un !</string>
+
+
+    <string name="congratulation">Félicitation !</string>
+    <string name="ok_btn">OK</string>
+    <string name="choose_weapon_information">Avant toute chose tu vas devoir choisir une arme !</string>
+    <string name="game_master_weapon_comment">Hum, je n\'aurais jamais choisi une %s</string>
+    <string name="player_is_in">Je vois que tu es fin prêt %s!\nUn sac d\'os dans une armure, l\'arme à la main  et le regard dur, je me souviendrai de toi gamin… Bref bonne chance! \n\nAppuie sur continuer pour commencer l\'exploration !</string>
+    <string name="continue_btn">Continuer</string>
+    <string name="nb_of_arrow">%d flêches dans votre carquois</string>
+    <string name="nb_of_magic_damage">%d dégâts de magie supplémentaire</string>
+    <string name="weapon_details">* id : %1$s \n* name : %2$s \n* Bonus : %3$s</string>
+
+    <string-array name="other_choice_responses">
+        <item>Hein quoi ?</item>
+        <item>Tu peux répéter ?</item>
+        <item>Arrête de manger quand tu parles on comprend pas.</item>
+        <item>Quel accent étrange…</item>
+        <item>Sérieusement articule…</item>
+        <item>J\'ai rien compris</item>
+    </string-array>
+
 </resources>

@@ -1,34 +1,34 @@
-package com.example.kotlinrpgmoc4.module
+package com.example.kotlinrpgmoc4.module.game
 
+import com.example.kotlinrpgmoc4.data.model.Message
+import com.example.kotlinrpgmoc4.data.model.Player
 import com.example.kotlinrpgmoc4.data.model.Room
 import com.example.kotlinrpgmoc4.data.model.RoomName
-import com.example.kotlinrpgmoc4.data.model.Weapon
+import com.example.kotlinrpgmoc4.module.common.BaseView
 
 
-interface GameInterface {
+interface GameView : BaseView {
 
     //region * * * * * Cours 1 * * * * *
     fun displayWelcomeMessage()
 
-    fun askPlayerPseudo()
+    fun displayPlayerPseudoReaction(pseudo: String)
 
     fun displayStartQuestMessage()
 
     fun displayDungeonInformation(dungeonName: String)
 
-    fun choosePlayerWeaponInformation(weapons: Array<Weapon>)
+    fun choosePlayerWeaponInformation()
 
-    fun questStarting()
+    fun displayStartQuestNegativeAnswer()
 
-    fun questNotStarting()
-
-    fun questWtfAnswer()
+    fun displayQuestWtfAnswer()
     //endregion
 
     //region * * * * * Cours 2 * * * * *
     fun displayWeaponGameMasterMessage(weaponName: String)
 
-    fun displayPlayerAreIn(pseudo: String)
+    fun displayPlayerIsIn(player: Player)
 
     fun displayPossibleDirection(room: Room)
 
@@ -62,12 +62,22 @@ interface GameInterface {
 
     fun askPlayerWantFighting(typeName: String)
 
-    fun youAreSoYoung()
+    fun displayYouAreSoYoung()
 
-    fun thatOkYouAreWiseEnough()
+    fun displayThatOkYouAreWiseEnough()
 
-    fun godYouAreSoOld()
+    fun displayGodYouAreSoOld()
 
     fun displayCurrentRoomInformation(currentRoom: Room)
     //endregion
+
+    //region * * * * * Cours 3&4 * * * * *
+
+    fun addPlayerMessage(message: Message)
+
+    fun displayStartQuestPositiveAnswer()
+
+    fun displayNextCourse()
+
+    //
 }

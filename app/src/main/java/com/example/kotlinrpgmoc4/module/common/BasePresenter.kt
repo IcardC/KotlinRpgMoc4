@@ -1,13 +1,40 @@
-package rpg.kotlin.com.esgikotlinrpgandroid.module.common
+package com.example.kotlinrpgmoc4.module.common
+
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 
 /**
  * Created on 21/10/2018 by cyrilicard
  *
  */
-open class BasePresenter {
-  open fun onCreated() = Unit
-  open fun onResume() = Unit
-  open fun onPause() = Unit
-  open fun onStop() = Unit
-  open fun onDestroy() = Unit
+open class BasePresenter : LifecycleObserver {
+
+    lateinit var baseView: BaseView
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    open fun onCreate() {
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    open fun onStart() {
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    open fun onResume() {
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    open fun onPause() {
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    open fun onStop() {
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    open fun onDestroy() {
+
+    }
+
 }

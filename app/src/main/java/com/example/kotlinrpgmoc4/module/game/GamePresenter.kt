@@ -1,13 +1,16 @@
-package com.example.kotlinrpgmoc4.module
+package com.example.kotlinrpgmoc4.module.game
 
 import com.example.kotlinrpgmoc4.data.DataProvider
 import com.example.kotlinrpgmoc4.data.model.*
-import com.example.kotlinrpgmoc4.data.model.exception.WeaponException
+import com.example.kotlinrpgmoc4.module.common.BasePresenter
+import java.util.*
 
-class GamePresenter(private val view: GameInterface) {
+class GamePresenter(private val view: GameView) : BasePresenter() {
 
-    private lateinit var pseudo: String
     private val dungeon by lazy { DataProvider.initDungeon() }
+
+    private var hasChooseWeapon = false
+    private lateinit var currentWeapon: Weapon
     private lateinit var player: Player
 
     private var currentRoom: Room? = null
@@ -16,35 +19,81 @@ class GamePresenter(private val view: GameInterface) {
     private var winTheGame = false
     private var previousRoom: Room? = null
 
+    private var currentStoryLine: StoryLine = StoryLine.WELCOME_TO_THE_GAME
+
+    override fun onCreate() {
+        super.onCreate()
+        manageStoryLine()
+    }
+
+    @Deprecated(
+        "Use manageStoryLine() instead",
+        ReplaceWith("manageStoryLine()"),
+        DeprecationLevel.ERROR
+    )
     fun initGame() {
-        view.displayWelcomeMessage()
-        view.askPlayerPseudo()
+        // view.displayWelcomeMessage()
+        //view.displayPlayerPseudoReaction()
     }
 
-    fun savePlayerPseudo(pseudo: String) {
-        this.pseudo = pseudo
-        askForStartingQuest()
-    }
-
-    private fun askForStartingQuest() {
-        view.displayStartQuestMessage()
-    }
-
-    fun tryToLaunchDungeon(comeToStartQuest: String?) {
-        when {
-            YES.contains(comeToStartQuest?.toLowerCase()) -> {
-                view.questStarting()
-                questStarting()
+    //Game master message
+    private fun manageStoryLine() {
+        when (currentStoryLine) {
+            StoryLine.WELCOME_TO_THE_GAME -> view.displayWelcomeMessage()
+            StoryLine.PLAYER_PSEUDO -> {
+                view.displayPlayerPseudoReaction(player.pseudo)
+                triggerStoryLineAction()
             }
-            NO.contains(comeToStartQuest?.toLowerCase()) -> view.questNotStarting()
-            else -> view.questWtfAnswer()
+            StoryLine.START_QUEST -> view.displayStartQuestMessage()
+            StoryLine.ANSWER_QUEST -> view.displayStartQuestPositiveAnswer()
+            StoryLine.DUNGEON_INFORMATION -> view.displayDungeonInformation(dungeon.name)
+            StoryLine.CHOOSE_WEAPON -> view.choosePlayerWeaponInformation()
+            StoryLine.CONFIGURE_PLAYER -> view.displayPlayerIsIn(player)
+            StoryLine.START_EXPLORATION -> view.displayNextCourse()
         }
     }
 
-    private fun questStarting() {
+    private fun triggerStoryLineAction(answer: String = "") {
+        when (currentStoryLine) {
+            StoryLine.WELCOME_TO_THE_GAME -> {
+                //change to a simple method
+                player = Player(pseudo = answer)
+                updateStoryLine()
+            }
+            StoryLine.START_QUEST -> prepareStarQuest(answer)
+            StoryLine.CHOOSE_WEAPON -> if (hasChooseWeapon) initPlayer()
+            StoryLine.START_EXPLORATION -> {
+            }
+            else -> updateStoryLine()
+        }
+
+        //When actions are done we continue the story
+        manageStoryLine()
+    }
+
+    private fun updateStoryLine() {
+        currentStoryLine = StoryLine.getNextStoryLinePoint(currentStoryLine)
+    }
+
+
+    private fun prepareStarQuest(answer: String) {
+        val lAnswer = answer.toLowerCase(Locale.getDefault())
+        when {
+            YES.contains(lAnswer) -> prepareDungeon()
+            NO.contains(lAnswer) -> view.displayStartQuestNegativeAnswer()
+            else -> view.displayQuestWtfAnswer()
+        }
+    }
+
+    private fun prepareDungeon() {
         dungeon.rooms[RoomName.STARTING_ROOM]?.let { currentRoom = it }
-        view.displayDungeonInformation(dungeon.name)
-        choosePlayerWeapon()
+        updateStoryLine()
+    }
+
+    /*private fun questStarting() {
+      dungeon.rooms[RoomName.STARTING_ROOM]?.let { currentRoom = it }
+      view.displayDungeonInformation(dungeon.name)
+      choosePlayerWeapon()
     }
 
     private fun choosePlayerWeapon() {
@@ -57,25 +106,22 @@ class GamePresenter(private val view: GameInterface) {
             initPlayer(weapon)
             startDungeon()
         } ?: throw WeaponException()
-    }
+    }*/
 
-    private fun initPlayer(weapon: Weapon) {
+    private fun initPlayer() {
         val randomAge = (18..99).random()
-
-        when {
-            randomAge < 21 -> view.youAreSoYoung()
-            (randomAge >= 21) and (randomAge < 40) -> view.thatOkYouAreWiseEnough()
-            else -> view.godYouAreSoOld()
+        player.apply {
+            age = randomAge
+            healthPoint = 100
+            weapon = currentWeapon
         }
 
-        player = Player(
-            pseudo = pseudo,
-            age = randomAge,
-            healthPoint = 100,
-            weapon = weapon,
-            items = mutableListOf()
-        )
-        view.displayPlayerAreIn(pseudo)
+        when {
+            randomAge < 21 -> view.displayYouAreSoYoung()
+            randomAge in 21..40 -> view.displayThatOkYouAreWiseEnough()
+            else -> view.displayGodYouAreSoOld()
+        }
+        updateStoryLine()
     }
 
     private fun startDungeon() {
@@ -174,6 +220,33 @@ class GamePresenter(private val view: GameInterface) {
 
     fun continueOrLeaveChoice(userChoice: String?) {
         userChoice?.let { if (it == QUIT) leaveTheGame = true }
+    }
+
+    fun onValidateClick(answer: String) {
+        if (answer.isNotBlank()) {
+            val playerMessage = Message(UserType.PLAYER, answer)
+            view.addPlayerMessage(playerMessage)
+            triggerStoryLineAction(answer)
+        }
+    }
+
+    fun onMapClick() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun onContinueClick() {
+        triggerStoryLineAction()
+    }
+
+    fun onPositiveDialogClick() {
+        triggerStoryLineAction()
+    }
+
+    fun playerHasChosenHisWeapon() {
+        hasChooseWeapon = true
+        currentWeapon = DataProvider.currentWeapon ?: Dagger()
+        view.displayWeaponGameMasterMessage(currentWeapon.weaponName)
+        triggerStoryLineAction()
     }
 }
 

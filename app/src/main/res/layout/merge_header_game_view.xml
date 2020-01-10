@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_game">
+
+    <TextView
+        android:id="@+id/game_player_name_txv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Gandalf le bordeau" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_life_point_txv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:drawableStart="@drawable/ic_life"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/game_view_separator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_player_name_txv"
+        tools:text="@string/player_life_point" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_weapon_imv"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/game_view_separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_axe" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/game_map_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="10dp"
+        android:src="@drawable/ic_map"
+        app:layout_constraintBottom_toTopOf="@+id/game_view_separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/game_view_separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_life_point_txv" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/header_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="game_life_point_txv,game_view_separator,game_weapon_imv,game_map_btn,game_player_name_txv" />
+
+</merge>

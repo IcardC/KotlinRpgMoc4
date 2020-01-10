@@ -1,16 +1,9 @@
 package com.example.kotlinrpgmoc4.module
 
-import com.example.kotlinrpgmoc4.data.model.Room
-import com.example.kotlinrpgmoc4.data.model.RoomName
-import com.example.kotlinrpgmoc4.data.model.Weapon
-import com.example.kotlinrpgmoc4.data.model.exception.WeaponException
-import com.example.kotlinrpgmoc4.misc.Utils
-import java.util.*
+@Deprecated("not used anymore")
+class GameConsole /*: GameView {
 
-class GameConsole : GameInterface {
-
-    private var presenter: GamePresenter = GamePresenter(this)
-
+  //  private var presenter: GamePresenter = GamePresenter(this)
     init {
         presenter.initGame()
     }
@@ -20,7 +13,7 @@ class GameConsole : GameInterface {
         println("Bienvenue à kotlinCity! \nQuel est ton nom voyageur?\n")
     }
 
-    override fun askPlayerPseudo() {
+    override fun displayPlayerPseudoReaction() {
         print("Pseudo : ")
         val myPseudo: String = readLine() ?: "toto"
         print("En voilà un drôle de nom $myPseudo")
@@ -38,14 +31,14 @@ class GameConsole : GameInterface {
         println("Je savais que tu avais l'ame d'un guerrier, je l'ai vu dès que tu t'es présenté à moi !")
     }
 
-    override fun questNotStarting() {
+    override fun displayStartQuestNegativeAnswer() {
         println(
             "Tu ne faisais pas l'affaire de toute manière! " +
                     "fishtrrr..."
         )
     }
 
-    override fun questWtfAnswer() {
+    override fun displayQuestWtfAnswer() {
         println("Hum, Hum, ce n'est pas une bonne réponse")
         println(OTHER_CHOICE_RESPONSES.random())
         presenter.tryToLaunchDungeon(readLine())
@@ -92,7 +85,7 @@ class GameConsole : GameInterface {
         println("Hum, je n'aurais jamais choisi une $weaponName\n")
     }
 
-    override fun displayPlayerAreIn(pseudo: String) {
+    override fun displayPlayerIsIn(pseudo: String) {
         println("Te voilà rentré dans le donjon ${pseudo.capitalize()} le...le... brave")
     }
 
@@ -177,15 +170,15 @@ class GameConsole : GameInterface {
         presenter.continueOrLeaveChoice(readLine())
     }
 
-    override fun youAreSoYoung() {
+    override fun displayYouAreSoYoung() {
         println("Damn! You are soooo young, I don't think you can survive enough time ! Bonne chance mon enfant j'en perds mon français !")
     }
 
-    override fun thatOkYouAreWiseEnough() {
+    override fun displayThatOkYouAreWiseEnough() {
         println("Hum, un grand Jedi tu seras !")
     }
 
-    override fun godYouAreSoOld() {
+    override fun displayGodYouAreSoOld() {
         println("Outch, je te laisserai bien ma place assis dans le métro, si seulement il y en avait un !")
     }
 
@@ -203,5 +196,5 @@ class GameConsole : GameInterface {
     }
 
     private fun List<String>.random(): String = get(Random().nextInt(size))
-}
+}*/
 

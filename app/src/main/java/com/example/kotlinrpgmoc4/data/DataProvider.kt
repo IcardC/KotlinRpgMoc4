@@ -4,6 +4,8 @@ import com.example.kotlinrpgmoc4.data.model.*
 
 object DataProvider {
 
+    var currentWeapon: Weapon? = null
+
     fun initDungeon() = Dungeon(rooms = prepareDungeonRooms())
 
     private fun prepareDungeonRooms(): Map<RoomName, Room> {
@@ -38,4 +40,7 @@ object DataProvider {
         )
     }
 
+    fun prepareListOfWeapons(): List<Weapon> {
+        return mutableListOf(Dagger(), Sword(), Axe(), Bow(), MagicWand())
+    }
 }
