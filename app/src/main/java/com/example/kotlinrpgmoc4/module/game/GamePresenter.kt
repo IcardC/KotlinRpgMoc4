@@ -7,7 +7,7 @@ import java.util.*
 
 class GamePresenter(private val view: GameView) : BasePresenter() {
 
-    private val dungeon by lazy { DataProvider.initDungeon() }
+    private val dungeon = DataProvider.dungeon
 
     private var hasChooseWeapon = false
     private lateinit var currentWeapon: Weapon
@@ -231,7 +231,10 @@ class GamePresenter(private val view: GameView) : BasePresenter() {
     }
 
     fun onMapClick() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        currentRoom?.let {
+            DataProvider.currentRoom = it
+            view.navigateToMap()
+        } ?: view.displayNoMapMessage()
     }
 
     fun onContinueClick() {

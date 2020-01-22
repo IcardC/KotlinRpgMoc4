@@ -72,12 +72,16 @@ interface GameView : BaseView {
     //endregion
 
     //region * * * * * Cours 3&4 * * * * *
-
     fun addPlayerMessage(message: Message)
 
     fun displayStartQuestPositiveAnswer()
 
     fun displayNextCourse()
+    //endregion
 
-    //
+    //region * * * * * Cours 5 * * * * *
+    fun navigateToMap()
+
+    fun displayNoMapMessage()
+    //endregion
 }

@@ -10,4 +10,5 @@
     <color name="light_grey">#ececec</color>
     <color name="ugly_white_green">#cfdcd6</color>
     <color name="ugly_white_orange">#dcd4cc</color>
+    <color name="black_light">#1e1d1d</color>
 </resources>

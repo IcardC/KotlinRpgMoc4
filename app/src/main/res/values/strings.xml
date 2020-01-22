@@ -36,6 +36,13 @@
     <string name="nb_of_magic_damage">%d dégâts de magie supplémentaire</string>
     <string name="weapon_details">* id : %1$s \n* name : %2$s \n* Bonus : %3$s</string>
 
+    <string name="monster_information">%1$s : %2$d pv</string>
+    <string name="heath_potion_information">Une potion de soin !</string>
+    <string name="key_information">Voilà une clé</string>
+    <string name="grenade_information">Une grenade prend garde !</string>
+
+    <string name="no_map_available">Je ne peux pas te montrer la carte, désolé repasse plus tard !</string>
+
     <string-array name="other_choice_responses">
         <item>Hein quoi ?</item>
         <item>Tu peux répéter ?</item>

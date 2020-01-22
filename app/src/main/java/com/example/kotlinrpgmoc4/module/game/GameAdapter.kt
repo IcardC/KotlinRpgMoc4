@@ -8,7 +8,7 @@ import com.example.kotlinrpgmoc4.R
 import com.example.kotlinrpgmoc4.data.model.Message
 import com.example.kotlinrpgmoc4.data.model.UserType
 import com.example.kotlinrpgmoc4.misc.inflate
-import rpg.kotlin.com.esgikotlinrpgandroid.misc.DateUtils
+import com.example.kotlinrpgmoc4.misc.DateUtils
 
 
 class GameAdapter : RecyclerView.Adapter<MessageViewHolder>() {

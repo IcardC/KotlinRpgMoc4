@@ -5,6 +5,8 @@ import com.example.kotlinrpgmoc4.data.model.*
 object DataProvider {
 
     var currentWeapon: Weapon? = null
+    lateinit var currentRoom: Room
+    val dungeon by lazy { initDungeon() }
 
     fun initDungeon() = Dungeon(rooms = prepareDungeonRooms())
 

@@ -1,13 +1,8 @@
-package rpg.kotlin.com.esgikotlinrpgandroid.misc
+package com.example.kotlinrpgmoc4.misc
 
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-/**
- * Created on 22/10/2018 by cyrilicard
- *
- */
 class DateUtils {
 
   companion object {
@@ -16,6 +11,5 @@ class DateUtils {
       return dateFormat.format(calendar.time)
     }
   }
-
 
 }

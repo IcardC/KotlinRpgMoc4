@@ -28,6 +28,10 @@
             android:name=".module.weapons.WeaponsActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".module.map.MapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            />
 
     </application>
 

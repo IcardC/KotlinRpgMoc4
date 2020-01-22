@@ -23,6 +23,7 @@ import com.example.kotlinrpgmoc4.data.model.Room
 import com.example.kotlinrpgmoc4.data.model.RoomName
 import com.example.kotlinrpgmoc4.misc.hideKeyboard
 import com.example.kotlinrpgmoc4.module.common.BaseActivity
+import com.example.kotlinrpgmoc4.module.map.MapActivity
 import com.example.kotlinrpgmoc4.module.weapons.WeaponsActivity
 import kotlinx.android.synthetic.main.activity_game.*
 import java.util.*
@@ -31,6 +32,7 @@ class GameActivity : BaseActivity(R.layout.activity_game), GameView {
 
     //region  * * * Presenter declaration * * *
     private val presenter = GamePresenter(this)
+
     override fun getPresenter() = presenter
     //endregion
 
@@ -99,14 +101,7 @@ class GameActivity : BaseActivity(R.layout.activity_game), GameView {
             }
         }
 
-        mapBtn.setOnClickListener {
-            presenter.onMapClick()
-            Toast.makeText(
-                this,
-                "En construction! \nRome ne s'est pas faite en un jour!",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        mapBtn.setOnClickListener { presenter.onMapClick() }
     }
 
     private fun displayMessage(message: Message) {
@@ -216,6 +211,19 @@ class GameActivity : BaseActivity(R.layout.activity_game), GameView {
     //endregion
 
     //region * * * * * Cours 5 * * * * *
+
+    override fun navigateToMap() {
+        Intent(this, MapActivity::class.java)
+            .also { startActivity(it) }
+    }
+
+    override fun displayNoMapMessage() {
+        //En construction!
+        //Rome ne s'est pas faite en un jour!
+        Toast.makeText(this, getString(R.string.no_map_available), Toast.LENGTH_SHORT).show()
+    }
+
+
     override fun displayPossibleDirection(room: Room) {
         println("Tu peux choisir parmi ces options : ")
         with(room) {

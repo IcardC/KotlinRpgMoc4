@@ -70,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        tools:visibility="visible"
         app:constraint_referenced_ids="game_life_point_txv,game_view_separator,game_weapon_imv,game_map_btn,game_player_name_txv" />
 
 </merge>
